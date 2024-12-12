@@ -13,6 +13,7 @@ pipeline {
         stage ("Build image") {
             steps {
                 sh ('docker build -t ${IMAGE_REPO_NAME} .')
+                sh ('docker images')
             }
         }
         stage ("Login to ECR") {
@@ -24,8 +25,8 @@ pipeline {
         }
         stage ("Push image") {
             steps {
-                sh ('docker tag ${IMAGE_REPO_NAME}:${IMAGE_TAG} ${REPOSITORY_URI}:${IMAGE_TAG}')
-                sh ('docker push ${REPOSITORY_URI}:${IMAGE_TAG}')
+                sh ('docker tag sd2195_ecr_backend:latest 211125338837.dkr.ecr.ap-southeast-1.amazonaws.com/sd2195_ecr_backend:latest')
+                sh ('docker push 211125338837.dkr.ecr.ap-southeast-1.amazonaws.com/sd2195_ecr_backend:latest')
             }
         }
     }
