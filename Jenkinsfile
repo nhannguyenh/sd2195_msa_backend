@@ -24,8 +24,8 @@ pipeline {
         }
         stage ("Push image") {
             steps {
-                sh ('docker tag ${IMAGE_REPO_NAME}:${IMAGE_TAG} ${AWS_ACCOUNT_ID}.dkr.ecr.ap-southeast-1.amazonaws.com/sd2195_ecr_backend:latest')
-                sh ('docker push 211125338837.dkr.ecr.ap-southeast-1.amazonaws.com/sd2195_ecr_backend:latest')
+                sh ('docker tag ${IMAGE_REPO_NAME}:${IMAGE_TAG} ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}')
+                sh ('docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}')
             }
         }
     }
