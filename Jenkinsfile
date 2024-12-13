@@ -6,7 +6,6 @@ pipeline {
         AWS_DEFAULT_REGION = 'ap-southeast-1'
         IMAGE_REPO_NAME = 'sd2195_ecr_backend'
         IMAGE_TAG = 'latest'
-        REPOSITORY_URI = '${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}'
     }
 
     stages {
@@ -25,7 +24,7 @@ pipeline {
         }
         stage ("Push image") {
             steps {
-                sh ('docker tag sd2195_ecr_backend:latest 211125338837.dkr.ecr.ap-southeast-1.amazonaws.com/sd2195_ecr_backend:latest')
+                sh ('docker tag ${IMAGE_REPO_NAME}:${IMAGE_TAG} ${AWS_ACCOUNT_ID}.dkr.ecr.ap-southeast-1.amazonaws.com/sd2195_ecr_backend:latest')
                 sh ('docker push 211125338837.dkr.ecr.ap-southeast-1.amazonaws.com/sd2195_ecr_backend:latest')
             }
         }
