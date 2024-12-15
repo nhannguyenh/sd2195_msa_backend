@@ -30,7 +30,7 @@ pipeline {
         }
         stage ("Clear image") {
             steps {
-                sh ("docker rmi -f $(docker images | grep ${IMAGE_REPO_NAME} | awk '{print \$3}' | uniq)")
+                sh ("docker rmi -f \$(docker images | grep ${IMAGE_REPO_NAME} | awk '{print \$3}' | uniq)")
             }
         }
     }
