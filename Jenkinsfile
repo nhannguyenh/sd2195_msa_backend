@@ -5,13 +5,14 @@ pipeline {
         AWS_ACCOUNT_ID = '211125338837'
         AWS_DEFAULT_REGION = 'ap-southeast-1'
         IMAGE_REPO_NAME = 'sd2195_ecr_backend'
-        IMAGE_TAG = 'latest'
+        IMAGE_TAG = 'v1.${env.BUILD_NUMBER}'
     }
 
     stages {
         stage ("Build image") {
             steps {
-                sh ('docker build -t ${IMAGE_REPO_NAME} .')
+                sh ('docker build -t ${IMAGE_REPO_NAME}:${IMAGE_TAG} .')
+                sh ('docker images')
             }
         }
         stage ("Login to ECR") {
