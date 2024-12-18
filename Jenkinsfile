@@ -5,7 +5,7 @@ pipeline {
         AWS_ACCOUNT_ID = '211125338837'
         AWS_DEFAULT_REGION = 'ap-southeast-1'
         IMAGE_REPO_NAME = 'sd2195_ecr_backend'
-        IMAGE_TAG = 'v1.${env.BUILD_NUMBER}'
+        IMAGE_TAG = 'v1.' + ${env.BUILD_NUMBER}
     }
 
     stages {
